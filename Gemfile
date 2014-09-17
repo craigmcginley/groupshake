@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 gem 'nokogiri'
 
+gem 'will_paginate'
+
 group :development do
   gem 'pry'
   gem 'pry-nav'
