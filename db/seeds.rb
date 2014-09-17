@@ -8,7 +8,10 @@ xml_doc.xpath("//SCENE").each do |scene|
   speeches = scene.css("SPEECH")
 
   speeches.each do |speech|
-    speaker = speech.css("SPEAKER").text
+    speaker = speech.css("SPEAKER").text.split(" ").each do |name|
+      name.capitalize!
+    end
+    speaker = speaker.join(" ")
     line_count = speech.css("LINE").count
 
     role = Role.find_by(name: speaker) || Role.create(name: speaker, play_id: @play.id)
