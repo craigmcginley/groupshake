@@ -1,4 +1,8 @@
 A coding practice challenge from Groupize.
+==========================================
+
+Criteria
+--------
 
 Please create a web application that shows a sortable table of role
 information for Shakespeare's plays. The table should show the following
@@ -31,3 +35,13 @@ You may find the following information about the XML layout helpful:
 - PGROUPs have no relevance to this problem.
 - PERSONA is the XML element indicating a role. Not all PERSONA elements speak.
 - You may ignore any lines given by "All".
+
+
+Setup
+-----
+
+-Clone the repo
+-`rake db:create`
+-`rake db:migrate`
+-`rake db:seed`
+-`rails server`
