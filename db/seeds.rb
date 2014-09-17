@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+xml_doc = Nokogiri::XML(File.open("julius_caesar.xml"))
+
+@play = Play.create(title: xml_doc.xpath("//PLAY/TITLE").text, total_scenes: xml_doc.xpath("//SCENE").count)
+@chars = {}
+
+xml_doc.xpath("//SCENE").each do |scene|
+  scene_title = scene.css("TITLE").text
+  speeches = scene.css("SPEECH")
+
+  speeches.each do |speech|
+    speaker = speech.css("SPEAKER").text
+    line_count = speech.css("LINE").count
+
+    role = Role.find_by(name: speaker) || Role.create(name: speaker, play_id: @play.id)
+    if !@chars[role.name]
+      @chars[role.name] = []
+    end
+    role.lines_spoken += line_count
+    if line_count > role.longest_speech
+      role.longest_speech = line_count
+    end
+    role.save
+    if !@chars[role.name].include?(scene_title)
+      @chars[role.name] << scene_title
+    end
+  end
+end
+
+@chars.each do |char, scenes|
+  role = Role.find_by(name: char)
+  role.scene_count = scenes.count
+  role.scene_percentage = ((role.scene_count.to_f / @play.total_scenes.to_f) * 100).round(2)
+  role.save
+end
+
+@roles = Role.all
+@roles.each do |role|
+  if role.lines_spoken == 0 || role.name == "All"
+    role.destroy
+  end
+end
