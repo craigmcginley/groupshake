@@ -40,8 +40,9 @@ You may find the following information about the XML layout helpful:
 Setup
 -----
 
--Clone the repo
--`rake db:create`
--`rake db:migrate`
--`rake db:seed`
--`rails server`
+- Clone the repo
+- `bundle`
+- `rake db:create`
+- `rake db:migrate`
+- `rake db:seed`
+- `rails server`

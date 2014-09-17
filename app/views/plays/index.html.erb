@@ -1,0 +1,9 @@
+<h1>All Plays</h1>
+
+<ul>
+  <% @plays.each do |play| %>
+    <li>
+      <%= link_to play.title, play_roles_path(play) %>
+    </li>
+  <% end %>
+</ul>

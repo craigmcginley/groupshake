@@ -1,0 +1,23 @@
+<h1>Role Statistics for '<%= @play.title %>'</h1>
+<%= link_to "All Plays", plays_path %>
+<br>
+<br>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Lines Spoken</th>
+    <th>Longest Speech</th>
+    <th>Scenes Appeared In</th>
+    <th>Scenes Appeared In Percentage</th>
+  </tr>
+  <% @roles.each do |role| %>
+    <tr>
+      <td><%= role.name %></td>
+      <td><%= role.lines_spoken %></td>
+      <td><%= role.longest_speech %></td>
+      <td><%= role.scene_count %></td>
+      <td><%= role.scene_percentage %></td>
+    </tr>
+  <% end %>
+</table>
