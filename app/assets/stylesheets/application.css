@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+th {
+  padding: 10px 40px 10px 40px;
+}
+
+td {
+  text-align: center;
+}
+
+th .current {
+  padding-right: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url("asc-arrow.png");
+}
+
+th .desc {
+  background-image: url("desc-arrow.png");
+}
