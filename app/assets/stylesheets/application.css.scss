@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  text-align: center;
+}
+
+th {
+  padding: 10px 40px 10px 40px;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  margin: 0px 50px 0px 50px;
+}
+
+th .current {
+  padding-right: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url("asc-arrow.png");
+}
+
+th .desc {
+  background-image: url("desc-arrow.png");
+}
