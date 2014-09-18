@@ -1,6 +1,6 @@
 xml_doc = Nokogiri::XML(File.open("julius_caesar.xml"))
 
-@play = Play.create(title: xml_doc.xpath("//PLAY/TITLE").text, total_scenes: xml_doc.xpath("//SCENE").count)
+@play = Play.create!(title: xml_doc.xpath("//PLAY/TITLE").text, total_scenes: xml_doc.xpath("//SCENE").count)
 @chars = {}
 
 xml_doc.xpath("//SCENE").each do |scene|
@@ -17,7 +17,7 @@ xml_doc.xpath("//SCENE").each do |scene|
       speaker = speaker.join(" ")
       line_count = speech.css("LINE").count
 
-      role = @play.roles.find_or_create_by(name: speaker)
+      role = @play.roles.find_or_create_by!(name: speaker)
       @chars[role.name] ||= []
       role.lines_spoken += line_count
       if line_count > role.longest_speech
