@@ -8,23 +8,25 @@ xml_doc.xpath("//SCENE").each do |scene|
   speeches = scene.css("SPEECH")
 
   speeches.each do |speech|
-    speaker = speech.css("SPEAKER").text.split(" ").each do |name|
-      name.capitalize!
-    end
-    speaker = speaker.join(" ")
-    line_count = speech.css("LINE").count
+    speakers = speech.css("SPEAKER")
+    speakers.each do |speaker|
+      speaker = speaker.text.split(" ")
+      speaker.each do |name|
+        name.capitalize!
+      end
+      speaker = speaker.join(" ")
+      line_count = speech.css("LINE").count
 
-    role = Role.find_by(name: speaker) || Role.create(name: speaker, play_id: @play.id)
-    if !@chars[role.name]
-      @chars[role.name] = []
-    end
-    role.lines_spoken += line_count
-    if line_count > role.longest_speech
-      role.longest_speech = line_count
-    end
-    role.save
-    if !@chars[role.name].include?(scene_title)
-      @chars[role.name] << scene_title
+      role = @play.roles.find_or_create_by(name: speaker)
+      @chars[role.name] ||= []
+      role.lines_spoken += line_count
+      if line_count > role.longest_speech
+        role.longest_speech = line_count
+      end
+      role.save
+      if !@chars[role.name].include?(scene_title)
+        @chars[role.name] << scene_title
+      end
     end
   end
 end
