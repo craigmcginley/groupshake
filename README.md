@@ -1,5 +1,5 @@
-A coding practice challenge from Groupize.
-==========================================
+A coding practice challenge.
+============================
 
 Criteria
 --------
