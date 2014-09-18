@@ -3,7 +3,7 @@ class RolesController < ApplicationController
 
   def index
     @play = Play.find(params[:play_id])
-    @roles = Role.where(play: @play).paginate(page: params[:page], per_page: 10).order(sort_column + " " + sort_direction)
+    @roles = @play.roles.paginate(page: params[:page], per_page: 10).order(sort_column + " " + sort_direction)
   end
 
   private
