@@ -14,12 +14,23 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  text-align: center;
+}
+
 th {
   padding: 10px 40px 10px 40px;
 }
 
-td {
-  text-align: center;
+ul {
+  list-style: none;
+}
+
+table {
+  margin: 0px 50px 0px 50px;
 }
 
 th .current {
