@@ -3,7 +3,11 @@
 <br>
 <br>
 
+# Avoid inline styles
 <table border="1">
+# Make sure your table HTML is valid. The th belongs in a thead
+# And you want tbody tags around your actual roles.
+# This is important for certain JS frameworks like Ember.
   <tr>
     <th><%= sortable "name" %></th>
     <th><%= sortable "lines_spoken" %></th>
