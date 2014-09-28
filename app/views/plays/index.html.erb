@@ -1,5 +1,9 @@
 <h1>All Plays</h1>
 
+# In this case, you'd probably want to introduce handling
+# for the case where there are no plays.
+# Producing html that looks like `<ul></ul>`
+# confuses certain JS plugins
 <ul>
   <% @plays.each do |play| %>
     <li>
