@@ -17,6 +17,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/*
+* Do not define styles here
+* Put them in a separate CSS file
+* and require_tree will take care of it
+*/
+
 body {
   text-align: center;
 }
